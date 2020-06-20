@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://behavior_tree/BehaviorTree.gd" type="Script" id=1]
+[ext_resource path="res://behavior_tree/BehaviorTreeNodeConcurrent.gd" type="Script" id=2]
+[ext_resource path="res://behavior_tree/BehaviorTreeNodeSequenceSelector.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Dazui_actions/print.gd" type="Script" id=4]
+[ext_resource path="res://behavior_tree/BehaviorTreeNodeRandomSelector.gd" type="Script" id=6]
+
+[node name="BehaviorTree" type="Node2D"]
+script = ExtResource( 1 )
+root_path = NodePath("root")
+
+[node name="root" type="Node" parent="."]
+script = ExtResource( 6 )
+min_select_delay = 5.0
+max_select_delay = 5.0
+
+[node name="Sequence" type="Node" parent="root"]
+script = ExtResource( 3 )
+behavior_tree_path = NodePath("../..")
+
+[node name="print" type="Node" parent="root/Sequence"]
+script = ExtResource( 4 )
+behavior_tree_path = NodePath("../../..")
+msg = "1"
+
+[node name="print2" type="Node" parent="root/Sequence"]
+script = ExtResource( 4 )
+behavior_tree_path = NodePath("../../..")
+msg = "2"
+
+[node name="print3" type="Node" parent="root/Sequence"]
+script = ExtResource( 4 )
+behavior_tree_path = NodePath("../../..")
+msg = "3"
+
+[node name="Concurrent" type="Node" parent="root"]
+script = ExtResource( 2 )
+behavior_tree_path = NodePath("../..")
+
+[node name="print4" type="Node" parent="root/Concurrent"]
+script = ExtResource( 4 )
+behavior_tree_path = NodePath("../../..")
+msg = "4"
+
+[node name="print5" type="Node" parent="root/Concurrent"]
+script = ExtResource( 4 )
+behavior_tree_path = NodePath("../../..")
+msg = "5"
+time = 2.0
+
+[node name="print6" type="Node" parent="root/Concurrent"]
+script = ExtResource( 4 )
+behavior_tree_path = NodePath("../../..")
+msg = "6"
+time = 3.0

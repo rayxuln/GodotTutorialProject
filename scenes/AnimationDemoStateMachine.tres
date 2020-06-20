@@ -1,0 +1,42 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=9 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "walk_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+blend_point_0/node = SubResource( 2 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 3 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 4 )
+blend_point_2/pos = Vector2( 0, 0.9 )
+blend_point_3/node = SubResource( 5 )
+blend_point_3/pos = Vector2( 0, -1 )
+min_space = Vector2( -1.1, -1 )
+max_space = Vector2( 1.1, 1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[resource]
+states/idle/node = SubResource( 1 )
+states/idle/position = Vector2( 255.975, 116 )
+states/walk/node = SubResource( 6 )
+states/walk/position = Vector2( 565.975, 116 )
+transitions = [ "idle", "walk", SubResource( 7 ), "walk", "idle", SubResource( 8 ) ]
+start_node = "idle"
+graph_offset = Vector2( 19.9755, -55 )

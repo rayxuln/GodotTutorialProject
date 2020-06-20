@@ -1,0 +1,205 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://images/raiix_body.png" type="Texture" id=1]
+[ext_resource path="res://scenes/AnimationDemo.gd" type="Script" id=2]
+[ext_resource path="res://scenes/AnimationDemoStateMachine.tres" type="AnimationNodeStateMachine" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hurt"
+length = 0.08
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_anim_event"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17, 18, 19, 20 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 21, 22, 23, 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "white_modulate"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="AnimationNodeAdd2" id=8]
+
+[sub_resource type="AnimationNodeAdd2" id=9]
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "white_modulate"
+
+[sub_resource type="AnimationNodeBlendTree" id=12]
+graph_offset = Vector2( -544, -214.75 )
+nodes/add_hurt/node = SubResource( 8 )
+nodes/add_hurt/position = Vector2( 40, 100 )
+nodes/add_white/node = SubResource( 9 )
+nodes/add_white/position = Vector2( -220, -20 )
+nodes/body_state_machine/node = ExtResource( 3 )
+nodes/body_state_machine/position = Vector2( -480, -80 )
+nodes/hurt/node = SubResource( 10 )
+nodes/hurt/position = Vector2( -220, 180 )
+nodes/output/position = Vector2( 300, 140 )
+nodes/white/node = SubResource( 11 )
+nodes/white/position = Vector2( -500, 120 )
+node_connections = [ "output", 0, "add_hurt", "add_hurt", 0, "add_white", "add_hurt", 1, "hurt", "add_white", 0, "body_state_machine", "add_white", 1, "white" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[sub_resource type="Animation" id=14]
+resource_name = "新建动画"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.768627, 0.211765, 0.211765, 1 ), Color( 0, 0.364706, 0.878431, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Node2D" type="KinematicBody2D"]
+position = Vector2( 457.494, 241.67 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/walk_down = SubResource( 3 )
+anims/walk_left = SubResource( 4 )
+anims/walk_right = SubResource( 5 )
+anims/walk_up = SubResource( 6 )
+anims/white_modulate = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.717386, 0.221961, 0.256209, 1 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 7
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/add_hurt/add_amount = 0.0
+parameters/add_white/add_amount = 1.0
+parameters/body_state_machine/playback = SubResource( 13 )
+parameters/body_state_machine/walk/blend_position = Vector2( 0, 0 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+"anims/新建动画" = SubResource( 14 )
