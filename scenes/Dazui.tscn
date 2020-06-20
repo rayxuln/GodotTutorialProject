@@ -325,7 +325,7 @@ texture = ExtResource( 1 )
 position = Vector2( 4.99994, -53.3681 )
 texture = ExtResource( 2 )
 hframes = 24
-frame = 4
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/big_jump_down = SubResource( 1 )
@@ -366,8 +366,7 @@ script = ExtResource( 7 )
 
 [node name="think" type="Node" parent="BT/root"]
 script = ExtResource( 10 )
-min_select_delay = 2.0
-max_select_delay = 4.0
+max_select_delay = 2.0
 delay_on_start = true
 
 [node name="chase" type="Node" parent="BT/root/think"]

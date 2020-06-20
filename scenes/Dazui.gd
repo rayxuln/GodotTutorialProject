@@ -32,7 +32,7 @@ var die_done = false
 
 func _ready():
 	randomize()
-	state_machine = StateMachine.new(ThinkState.new(self))
+#	state_machine = StateMachine.new(ThinkState.new(self))
 	
 	
 
