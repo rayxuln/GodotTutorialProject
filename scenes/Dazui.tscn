@@ -325,7 +325,7 @@ texture = ExtResource( 1 )
 position = Vector2( 4.99994, -53.3681 )
 texture = ExtResource( 2 )
 hframes = 24
-frame = 2
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/big_jump_down = SubResource( 1 )

@@ -14,12 +14,12 @@ func enter():
 
 # override
 func exit():
-	owner.anim_playback.travel("idle")
+	the_owner.anim_playback.travel("idle")
 	pass
 
 # override
 func execute():
 	the_owner.chase_to(the_owner.get_global_mouse_position())
-	if the_owner.chase_done:
+	if the_owner.chase_done and not the_owner.move_enable:
 		return BTNResult.FINISHED
 	return BTNResult.RUNNING

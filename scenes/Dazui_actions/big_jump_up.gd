@@ -10,6 +10,8 @@ onready var the_owner = get_node_from_database("owner")
 func enter():
 	the_owner.anim_playback.travel("big_jump_up")
 	the_owner.big_jump_up_done = false
+	
+	set_to_database("target_pos", the_owner.get_global_mouse_position())
 
 # override
 func exit():

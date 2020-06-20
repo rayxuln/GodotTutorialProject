@@ -33,7 +33,11 @@ func get_random_select_delay():
 func start_delay_timer():
 	has_delay_done = false
 	if not delay_timer:
-		delay_timer = get_tree().create_timer(get_random_select_delay())
+		var t = get_random_select_delay()
+		if t == 0:
+			has_delay_done = true
+			return
+		delay_timer = get_tree().create_timer(t)
 		delay_timer.connect("timeout", self, "_on_select_delay_done")
 
 func do_eval():

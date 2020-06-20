@@ -13,7 +13,7 @@ func enter():
 
 # override
 func exit():
-	owner.anim_playback.travel("idle")
+	the_owner.anim_playback.travel("idle")
 	pass
 
 # override

@@ -17,7 +17,7 @@ func exit():
 
 # override
 func execute():
-	var target_pos = the_owner.get_global_mouse_position()
+	var target_pos = get_from_database("target_pos")
 	the_owner.chase_to(target_pos)
 	
 	if (the_owner.global_position - target_pos).length() <= 10:
