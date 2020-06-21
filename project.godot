@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeSequenceSelector.gd"
 }, {
+"base": "Resource",
+"class": "BehaviorTreeResource",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree_editor/BehaviorTreeResource.gd"
+}, {
 "base": "Object",
 "class": "State",
 "language": "GDScript",
@@ -74,6 +79,7 @@ _global_script_class_icons={
 "BehaviorTreeNodeProxy": "",
 "BehaviorTreeNodeRandomSelector": "",
 "BehaviorTreeNodeSequenceSelector": "",
+"BehaviorTreeResource": "",
 "State": "",
 "StateMachine": ""
 }
@@ -83,10 +89,6 @@ _global_script_class_icons={
 config/name="GodotTurtorialProject"
 run/main_scene="res://scenes/AnimationDemo.tscn"
 config/icon="res://icon.png"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "behavior_tree_plugin" )
 
 [rendering]
 

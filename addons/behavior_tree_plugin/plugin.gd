@@ -17,7 +17,8 @@ func _enter_tree():
 	add_custom_type("BehaviorTreeNodeSequenceSelector", "Node", preload("behavior_tree/BehaviorTreeNodeSequenceSelector.gd"), preload("icon.png"))
 	
 	dock = preload("behavior_tree_editor/BehaviorTreeEditor.tscn").instance()
-	add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, dock)
+	add_control_to_bottom_panel(dock, "BehaviorTree Editor")
+	dock.the_plugin = self
 
 func _exit_tree():
 	remove_custom_type("BehaviorTree")
@@ -32,5 +33,6 @@ func _exit_tree():
 	remove_custom_type("BehaviorTreeNodeRandomSelector")
 	remove_custom_type("BehaviorTreeNodeSequenceSelector")
 	
-	remove_control_from_docks(dock)
+	remove_control_from_bottom_panel(dock)
 	dock.free()
+	

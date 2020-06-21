@@ -1,7 +1,9 @@
-
+tool
 extends Node
 
 class_name BehaviorTree
+
+export(Resource) var behavior_tree_resource
 
 export(NodePath) var root_path setget _on_root_path_set, _on_root_path_get
 func _on_root_path_set(v):
@@ -22,7 +24,9 @@ func _ready():
 	if root:
 		root.activate()
 
-func _process(delta):
+func _process(_delta):
+	if Engine.editor_hint:
+		return
 	if not enable:
 		return
 	

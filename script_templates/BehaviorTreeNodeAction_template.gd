@@ -1,5 +1,5 @@
 
-extends "res://behavior_tree/BehaviorTreeNodeAction.gd"
+extends BehaviorTreeNodeAction
 
 # func <The node's name>():
 # 	pass

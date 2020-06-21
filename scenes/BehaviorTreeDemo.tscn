@@ -8,6 +8,9 @@
 [node name="BehaviorTree" type="Node"]
 script = ExtResource( 3 )
 root_path = NodePath("BehaviorTreeNodeSequenceSelector")
+database = {
+
+}
 
 [node name="BehaviorTreeNodeSequenceSelector" type="Node" parent="."]
 script = ExtResource( 2 )
