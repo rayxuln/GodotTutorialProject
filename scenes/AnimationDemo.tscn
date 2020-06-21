@@ -153,7 +153,7 @@ nodes/hurt/position = Vector2( -220, 180 )
 nodes/output/position = Vector2( 300, 140 )
 nodes/white/node = SubResource( 11 )
 nodes/white/position = Vector2( -500, 120 )
-node_connections = [ "output", 0, "add_hurt", "add_hurt", 0, "add_white", "add_hurt", 1, "hurt", "add_white", 0, "body_state_machine", "add_white", 1, "white" ]
+node_connections = [ "output", 0, "add_hurt", "add_white", 0, "body_state_machine", "add_white", 1, "white", "add_hurt", 0, "add_white", "add_hurt", 1, "hurt" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 

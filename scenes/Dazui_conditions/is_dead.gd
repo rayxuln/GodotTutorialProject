@@ -1,5 +1,5 @@
 
-extends "res://behavior_tree/BehaviorTreeCondition.gd"
+extends BehaviorTreeCondition
 
 # func <The node's name>():
 # 	pass

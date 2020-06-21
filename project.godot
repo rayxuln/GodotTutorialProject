@@ -9,6 +9,51 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BehaviorTree",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTree.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTreeCondition",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeCondition.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTreeNode",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNode.gd"
+}, {
+"base": "",
+"class": "BehaviorTreeNodeAction",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeAction.gd"
+}, {
+"base": "",
+"class": "BehaviorTreeNodeConcurrent",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeConcurrent.gd"
+}, {
+"base": "",
+"class": "BehaviorTreeNodePrioritySelector",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodePrioritySelector.gd"
+}, {
+"base": "",
+"class": "BehaviorTreeNodeProxy",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeProxy.gd"
+}, {
+"base": "",
+"class": "BehaviorTreeNodeRandomSelector",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeRandomSelector.gd"
+}, {
+"base": "",
+"class": "BehaviorTreeNodeSequenceSelector",
+"language": "GDScript",
+"path": "res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeSequenceSelector.gd"
+}, {
 "base": "Object",
 "class": "State",
 "language": "GDScript",
@@ -20,6 +65,15 @@ _global_script_classes=[ {
 "path": "res://state_machine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"BehaviorTree": "",
+"BehaviorTreeCondition": "",
+"BehaviorTreeNode": "",
+"BehaviorTreeNodeAction": "",
+"BehaviorTreeNodeConcurrent": "",
+"BehaviorTreeNodePrioritySelector": "",
+"BehaviorTreeNodeProxy": "",
+"BehaviorTreeNodeRandomSelector": "",
+"BehaviorTreeNodeSequenceSelector": "",
 "State": "",
 "StateMachine": ""
 }
@@ -29,6 +83,10 @@ _global_script_class_icons={
 config/name="GodotTurtorialProject"
 run/main_scene="res://scenes/AnimationDemo.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "behavior_tree_plugin" )
 
 [rendering]
 
