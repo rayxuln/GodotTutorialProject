@@ -61,7 +61,9 @@ margin_top = 26.0
 margin_right = 204.0
 margin_bottom = 48.0
 text = "Create ConditionNode"
+[connection signal="_end_node_move" from="GraphEdit" to="." method="_on_GraphEdit__end_node_move"]
 [connection signal="connection_request" from="GraphEdit" to="." method="_on_GraphEdit_connection_request"]
+[connection signal="delete_nodes_request" from="GraphEdit" to="." method="_on_GraphEdit_delete_nodes_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="GraphEdit" to="." method="_on_GraphEdit_node_selected"]
 [connection signal="popup_request" from="GraphEdit" to="." method="_on_GraphEdit_popup_request"]

@@ -6,6 +6,7 @@ class_name BehaviorTreeResource
 export(String) var tree_name = "6566"
 
 export(Array) var nodes:Array
+export(Array) var connections:Array
 
 enum NodeType{
 	NodeUndefined,
@@ -36,9 +37,11 @@ func node_type_to_string(t):
 
 func create_node(type):
 	var res = {
+		"g_name": "",
 		"position": Vector2.ZERO,
 		"type": type,
 		"name": "Unkown",
+		"custom_script": null,
 		"data": {}
 	}
 	nodes.append(res)

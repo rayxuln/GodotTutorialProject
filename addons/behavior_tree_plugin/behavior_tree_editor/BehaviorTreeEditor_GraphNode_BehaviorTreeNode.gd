@@ -33,6 +33,14 @@ func _process(delta):
 func update_name():
 	title = _on_node_name_get() + "(" + _on_type_string_get() + ")"
 
+func disconnect_to_others():
+	var e:GraphEdit = get_parent()
+	#{ from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }.
+	for c in e.get_connection_list():
+		if c["from"] == name:
+			e.disconnect_node(c["from"], c["from_port"], c["to"], c["to_port"])
+		if c["to"] == name:
+			e.disconnect_node(c["from"], c["from_port"], c["to"], c["to_port"])
 # ---------- signals -------------
 func _on_LineEdit_text_changed(new_text):
 	if resource_data:
@@ -43,7 +51,13 @@ func _on_LineEdit_text_changed(new_text):
 
 
 func _on_BehaviorTreeNode_close_request():
+	disconnect_to_others()
+	editor.update_connections_in_resource()
 	resource.remove_node(resource_data)
 	editor.refresh_inspetor()
 	get_parent().remove_child(self)
 	queue_free()
+
+
+func _on_BehaviorTreeNode_dragged(from, to):
+	resource_data["position"] = offset

@@ -87,7 +87,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotTurtorialProject"
-run/main_scene="res://scenes/AnimationDemo.tscn"
+run/main_scene="res://scenes/BehaviorTreeEditorDemo.tscn"
 config/icon="res://icon.png"
 
 [rendering]
