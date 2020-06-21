@@ -1,0 +1,29 @@
+[gd_scene format=2]
+
+[node name="BehaviorTreeEditor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphNode" type="GraphNode" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -26.0
+margin_top = -43.1577
+margin_right = 28.0
+margin_bottom = -23.1577
+text = "Hello~"
+__meta__ = {
+"_edit_use_anchors_": false
+}

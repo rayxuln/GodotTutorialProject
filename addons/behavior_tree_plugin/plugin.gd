@@ -1,6 +1,7 @@
 tool
 extends EditorPlugin
 
+var dock
 
 func _enter_tree():
 	add_custom_type("BehaviorTree", "Node", preload("behavior_tree/BehaviorTree.gd"), preload("icon.png"))
@@ -14,7 +15,9 @@ func _enter_tree():
 	add_custom_type("BehaviorTreeNodeProxy", "Node", preload("behavior_tree/BehaviorTreeNodeProxy.gd"), preload("icon.png"))
 	add_custom_type("BehaviorTreeNodeRandomSelector", "Node", preload("behavior_tree/BehaviorTreeNodeRandomSelector.gd"), preload("icon.png"))
 	add_custom_type("BehaviorTreeNodeSequenceSelector", "Node", preload("behavior_tree/BehaviorTreeNodeSequenceSelector.gd"), preload("icon.png"))
-
+	
+	dock = preload("behavior_tree_editor/BehaviorTreeEditor.tscn").instance()
+	add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, dock)
 
 func _exit_tree():
 	remove_custom_type("BehaviorTree")
@@ -28,3 +31,6 @@ func _exit_tree():
 	remove_custom_type("BehaviorTreeNodeProxy")
 	remove_custom_type("BehaviorTreeNodeRandomSelector")
 	remove_custom_type("BehaviorTreeNodeSequenceSelector")
+	
+	remove_control_from_docks(dock)
+	dock.free()

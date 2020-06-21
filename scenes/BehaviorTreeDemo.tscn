@@ -1,51 +1,50 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://behavior_tree/BehaviorTree.gd" type="Script" id=1]
-[ext_resource path="res://behavior_tree/BehaviorTreeNodeConcurrent.gd" type="Script" id=2]
-[ext_resource path="res://behavior_tree/BehaviorTreeNodeSequenceSelector.gd" type="Script" id=3]
+[ext_resource path="res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeConcurrent.gd" type="Script" id=1]
+[ext_resource path="res://addons/behavior_tree_plugin/behavior_tree/BehaviorTreeNodeSequenceSelector.gd" type="Script" id=2]
+[ext_resource path="res://addons/behavior_tree_plugin/behavior_tree/BehaviorTree.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Dazui_actions/print.gd" type="Script" id=4]
 
-[node name="BehaviorTree" type="Node2D"]
-script = ExtResource( 1 )
-root_path = NodePath("root")
-
-[node name="root" type="Node" parent="."]
+[node name="BehaviorTree" type="Node"]
 script = ExtResource( 3 )
+root_path = NodePath("BehaviorTreeNodeSequenceSelector")
 
-[node name="Sequence" type="Node" parent="root"]
-script = ExtResource( 3 )
-behavior_tree_path = NodePath("../..")
+[node name="BehaviorTreeNodeSequenceSelector" type="Node" parent="."]
+script = ExtResource( 2 )
 
-[node name="print" type="Node" parent="root/Sequence"]
+[node name="BehaviorTreeNodeSequenceSelector" type="Node" parent="BehaviorTreeNodeSequenceSelector"]
+script = ExtResource( 2 )
+
+[node name="print" type="Node" parent="BehaviorTreeNodeSequenceSelector/BehaviorTreeNodeSequenceSelector"]
 script = ExtResource( 4 )
 behavior_tree_path = NodePath("../../..")
 msg = "1"
 
-[node name="print2" type="Node" parent="root/Sequence"]
+[node name="print2" type="Node" parent="BehaviorTreeNodeSequenceSelector/BehaviorTreeNodeSequenceSelector"]
 script = ExtResource( 4 )
 behavior_tree_path = NodePath("../../..")
 msg = "2"
 
-[node name="print3" type="Node" parent="root/Sequence"]
+[node name="print3" type="Node" parent="BehaviorTreeNodeSequenceSelector/BehaviorTreeNodeSequenceSelector"]
 script = ExtResource( 4 )
 behavior_tree_path = NodePath("../../..")
 msg = "3"
 
-[node name="Concurrent" type="Node" parent="root"]
-script = ExtResource( 2 )
+[node name="BehaviorTreeNodeConcurrent" type="Node" parent="BehaviorTreeNodeSequenceSelector"]
+script = ExtResource( 1 )
 
-[node name="print4" type="Node" parent="root/Concurrent"]
+[node name="print4" type="Node" parent="BehaviorTreeNodeSequenceSelector/BehaviorTreeNodeConcurrent"]
 script = ExtResource( 4 )
 behavior_tree_path = NodePath("../../..")
 msg = "4"
 
-[node name="print5" type="Node" parent="root/Concurrent"]
+[node name="print5" type="Node" parent="BehaviorTreeNodeSequenceSelector/BehaviorTreeNodeConcurrent"]
 script = ExtResource( 4 )
 behavior_tree_path = NodePath("../../..")
 msg = "5"
 time = 2.0
 
-[node name="print6" type="Node" parent="root/Concurrent"]
+[node name="print6" type="Node" parent="BehaviorTreeNodeSequenceSelector/BehaviorTreeNodeConcurrent"]
 script = ExtResource( 4 )
 behavior_tree_path = NodePath("../../..")
 msg = "6"
