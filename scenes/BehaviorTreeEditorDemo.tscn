@@ -5,18 +5,19 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-tree_name = "6566"
+tree_name = "Fine"
 nodes = [ {
-"concurrent_mode": 1,
-"condition_mode": 1,
 "custom_script": null,
 "data": {
 
 },
+"delay_on_start": false,
 "g_name": "BehaviorTreeNode",
+"max_select_delay": 0,
+"min_select_delay": 0,
 "name": "Unkown",
-"position": Vector2( 60, 40 ),
-"type": 2
+"position": Vector2( 60, 20 ),
+"type": 3
 }, {
 "custom_script": null,
 "data": {
@@ -24,7 +25,34 @@ nodes = [ {
 },
 "g_name": "BehaviorTreeNode2",
 "name": "Unkown",
-"position": Vector2( 480, 60 ),
+"position": Vector2( 460, -20 ),
+"type": 1
+}, {
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode3",
+"name": "Unkown",
+"position": Vector2( 380, 180 ),
+"type": 6
+}, {
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode4",
+"name": "Unkown",
+"position": Vector2( 720, 140 ),
+"type": 1
+}, {
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode5",
+"name": "Unkown",
+"position": Vector2( 740, 320 ),
 "type": 1
 } ]
 connections = [ {
@@ -32,7 +60,23 @@ connections = [ {
 "from_port": 0,
 "to": "BehaviorTreeNode2",
 "to_port": 0
+}, {
+"from": "BehaviorTreeNode",
+"from_port": 0,
+"to": "BehaviorTreeNode3",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode3",
+"from_port": 0,
+"to": "BehaviorTreeNode4",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode3",
+"from_port": 0,
+"to": "BehaviorTreeNode5",
+"to_port": 0
 } ]
+root = "BehaviorTreeNode"
 
 [node name="BehaviorTree" type="Node"]
 script = ExtResource( 1 )

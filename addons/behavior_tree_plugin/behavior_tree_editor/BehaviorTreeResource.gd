@@ -7,6 +7,7 @@ export(String) var tree_name = "6566"
 
 export(Array) var nodes:Array
 export(Array) var connections:Array
+export(String) var root:String
 
 enum NodeType{
 	NodeUndefined,
@@ -15,7 +16,8 @@ enum NodeType{
 	NodePrioritySelector,
 	NodeProxy,
 	NodeRandomSelector,
-	NodeSequenceSelector
+	NodeSequenceSelector,
+	Condition
 }
 
 func node_type_to_string(t):
@@ -34,6 +36,8 @@ func node_type_to_string(t):
 			return "RandomSelector"
 		NodeType.NodeSequenceSelector:
 			return "SequenceSelector"
+		NodeType.Condition:
+			return "Condition"
 
 func create_node(type):
 	var res = {
@@ -53,12 +57,18 @@ func create_node(type):
 			res["concurrent_mode"] = 0
 			res["condition_mode"] = 0
 		NodeType.NodePrioritySelector:
-			pass
+			res["max_select_delay"] = 0
+			res["min_select_delay"] = 0
+			res["delay_on_start"] = false
 		NodeType.NodeProxy:
 			pass
 		NodeType.NodeRandomSelector:
-			pass
+			res["max_select_delay"] = 0
+			res["min_select_delay"] = 0
+			res["delay_on_start"] = false
 		NodeType.NodeSequenceSelector:
+			pass
+		NodeType.Condition:
 			pass
 	nodes.append(res)
 	return res

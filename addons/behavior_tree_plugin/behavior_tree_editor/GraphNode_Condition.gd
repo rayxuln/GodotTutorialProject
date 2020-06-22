@@ -5,6 +5,7 @@ var editor
 var resource
 var resource_data
 
+var action_script:Script
 onready var script_data:BehaviorTreeScriptDataResource = BehaviorTreeScriptDataResource.new()
 
 func _on_type_string_get():
@@ -20,6 +21,8 @@ var has_ready = false
 
 func BehaviorTreeEditorGraphNode():
 	pass
+func BehaviorTreeEditorGraphNodeCondition():
+	pass
 
 func _ready():
 	if resource_data:
@@ -27,18 +30,6 @@ func _ready():
 	update_name()
 	
 	script_data.graph_node = self
-	
-	$HBoxContainer2/ConcurrentModeOptionButton.clear()
-	$HBoxContainer2/ConcurrentModeOptionButton.add_item("And", 0)
-	$HBoxContainer2/ConcurrentModeOptionButton.add_item("Or", 1)
-	
-	$HBoxContainer3/ConditionModeOptionButton.clear()
-	$HBoxContainer3/ConditionModeOptionButton.add_item("All", 0)
-	$HBoxContainer3/ConditionModeOptionButton.add_item("Any", 1)
-	
-	
-	update_concurrent_mode_option_button()
-	update_condition_mode_option_button()
 
 func _process(delta):
 	if not has_ready:
@@ -49,13 +40,8 @@ func _process(delta):
 func update_name():
 	title = _on_node_name_get() + "(" + _on_type_string_get() + ")"
 
-func update_concurrent_mode_option_button():
-	if resource_data:
-		$HBoxContainer2/ConcurrentModeOptionButton.selected = resource_data["concurrent_mode"]
-
-func update_condition_mode_option_button():
-	if resource_data:
-		$HBoxContainer3/ConditionModeOptionButton.selected = resource_data["condition_mode"]
+func update_script_link_button():
+	$HBoxContainer2/LinkButton.text = action_script.resource_path if action_script else "select a script..."
 
 func disconnect_to_others():
 	var e:GraphEdit = get_parent()
@@ -65,6 +51,21 @@ func disconnect_to_others():
 			e.disconnect_node(c["from"], c["from_port"], c["to"], c["to_port"])
 		if c["to"] == name:
 			e.disconnect_node(c["from"], c["from_port"], c["to"], c["to_port"])
+
+func load_action_script(path):
+	if path is String:
+		if not path.empty():
+			action_script = load(path)
+		else:
+			action_script = null
+	else:
+		if path is Script:
+			action_script = path
+		else:
+			action_script = null
+	resource_data["custom_script"] = action_script
+	update_script_link_button()
+	
 
 # ---------- signals -------------
 func _on_LineEdit_text_changed(new_text):
@@ -93,14 +94,10 @@ func _on_LinkButton_pressed():
 	editor.the_plugin.script_select_dialog.connect("file_selected", self, "_on_script_file_selected")
 	editor.the_plugin.script_select_dialog.popup_centered()
 
+func _on_script_file_selected(file_path:String):
+	load_action_script(file_path)
+	editor.the_plugin.script_select_dialog.disconnect("file_selected", self, "_on_script_file_selected")
+
 func _on_selected():
 	var editor_interface:EditorInterface = editor.the_plugin.get_editor_interface()
 	editor_interface.inspect_object(script_data)
-
-
-func _on_ConcurrentModeOptionButton_item_selected(id):
-	resource_data["concurrent_mode"] = id
-
-
-func _on_ConditionModeOptionButton_item_selected(id):
-	resource_data["condition_mode"] = id

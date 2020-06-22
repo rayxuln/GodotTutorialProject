@@ -35,10 +35,11 @@ __meta__ = {
 }
 
 [node name="EmptyPopupMenu" type="PopupMenu" parent="."]
+visible = true
 margin_left = 252.0
 margin_top = 256.0
 margin_right = 456.0
-margin_bottom = 405.0
+margin_bottom = 496.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,17 +71,38 @@ margin_bottom = 74.0
 text = "Create Cocurrent Node"
 flat = false
 
-[node name="CreateBehaviorTreeNodeButton4" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+[node name="CreateBehaviorTreeNodePrioritySelector" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
 margin_top = 78.0
 margin_right = 204.0
 margin_bottom = 100.0
-text = "Create BehaviorTreeNode"
+text = "Create PrioritySelect Node"
 flat = false
 
-[node name="CreateConditionNodeButton" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+[node name="CreateBehaviorTreeNodeProxy" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
 margin_top = 104.0
 margin_right = 204.0
 margin_bottom = 126.0
+text = "Create Proxy Node"
+flat = false
+
+[node name="CreateBehaviorTreeNodeRandomSelector" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+margin_top = 130.0
+margin_right = 204.0
+margin_bottom = 152.0
+text = "Create RandomSelector Node"
+flat = false
+
+[node name="CreateBehaviorTreeNodeSequence" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+margin_top = 156.0
+margin_right = 204.0
+margin_bottom = 178.0
+text = "Create Sequnce Node"
+flat = false
+
+[node name="CreateConditionNodeButton" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+margin_top = 182.0
+margin_right = 204.0
+margin_bottom = 204.0
 text = "Create ConditionNode"
 [connection signal="_end_node_move" from="GraphEdit" to="." method="_on_GraphEdit__end_node_move"]
 [connection signal="connection_request" from="GraphEdit" to="." method="_on_GraphEdit_connection_request"]
@@ -91,4 +113,8 @@ text = "Create ConditionNode"
 [connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeButton" to="." method="_on_CreateBehaviorTreeNodeButton_pressed"]
 [connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeActionButton" to="." method="_on_CreateBehaviorTreeNodeActionButton_pressed"]
 [connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeConcurrent" to="." method="_on_CreateBehaviorTreeNodeConcurrent_pressed"]
+[connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodePrioritySelector" to="." method="_on_CreateBehaviorTreeNodePrioritySelector_pressed"]
+[connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeProxy" to="." method="_on_CreateBehaviorTreeNodeProxy_pressed"]
+[connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeRandomSelector" to="." method="_on_CreateBehaviorTreeNodeRandomSelector_pressed"]
+[connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeSequence" to="." method="_on_CreateBehaviorTreeNodeSequence_pressed"]
 [connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateConditionNodeButton" to="." method="_on_CreateConditionNodeButton_pressed"]

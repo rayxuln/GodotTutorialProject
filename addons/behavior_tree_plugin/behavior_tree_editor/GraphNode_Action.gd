@@ -21,6 +21,8 @@ var has_ready = false
 
 func BehaviorTreeEditorGraphNode():
 	pass
+func BehaviorTreeEditorGraphNodeAction():
+	pass
 
 func _ready():
 	if resource_data:
@@ -75,6 +77,7 @@ func _on_LineEdit_text_changed(new_text):
 
 
 func _on_BehaviorTreeNode_close_request():
+	script_data.unreference()
 	disconnect_to_others()
 	editor.update_connections_in_resource()
 	resource.remove_node(resource_data)
