@@ -105,7 +105,8 @@ func create_node_by_data(node_data):
 		NodeType.NodeAction:
 			var n = BehaviorTreeNodeAction.new()
 			n.name = node_data["name"]
-			n.set_script(node_data["custom_script"])
+			if node_data["custom_script"]:
+				n.set_script(node_data["custom_script"])
 			n.bte_identity = node_data["g_name"]
 			set_node_properties_from_data(n, node_data["data"])
 			return n
@@ -145,7 +146,8 @@ func create_node_by_data(node_data):
 		NodeType.Condition:
 			var n = BehaviorTreeCondition.new()
 			n.name = node_data["name"]
-			n.set_script(node_data["custom_script"])
+			if node_data["custom_script"]:
+				n.set_script(node_data["custom_script"])
 			n.bte_identity = node_data["g_name"]
 			set_node_properties_from_data(n, node_data["data"])
 			return n

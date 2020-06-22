@@ -106,6 +106,8 @@ func connect_proxy(node:Node, res:BehaviorTreeResource):
 			connect_proxy(child, res)
 
 func _ready():
+	if Engine.editor_hint:
+		return
 	if behavior_tree_resource:
 		gen_nodes_from_behavior_tree_resource(behavior_tree_resource)
 	if root:
@@ -116,7 +118,7 @@ func _process(_delta):
 		return
 	if not enable:
 		return
-	
+
 	if root and root.eval():
 		root.tick()
 

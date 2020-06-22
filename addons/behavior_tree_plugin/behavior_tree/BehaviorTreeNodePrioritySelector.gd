@@ -24,7 +24,7 @@ func _ready():
 		start_delay_timer()
 
 func wait_for_delay():
-	if not has_delay_done:
+	if not has_delay_done and delay_timer:
 		return true
 	has_delay_done = false
 	return false

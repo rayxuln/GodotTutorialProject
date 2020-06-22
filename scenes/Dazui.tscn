@@ -1,15 +1,13 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://images/shadow.png" type="Texture" id=1]
 [ext_resource path="res://images/dazui.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Dazui.gd" type="Script" id=3]
-[ext_resource path="res://behavior_tree/BehaviorTree.gd" type="Script" id=4]
-[ext_resource path="res://behavior_tree/BehaviorTreeNodePrioritySelector.gd" type="Script" id=5]
-[ext_resource path="res://behavior_tree/BehaviorTreeNodeSequenceSelector.gd" type="Script" id=6]
+[ext_resource path="res://addons/behavior_tree_plugin/behavior_tree/BehaviorTree.gd" type="Script" id=4]
+[ext_resource path="res://addons/behavior_tree_plugin/behavior_tree_editor/BehaviorTreeResource.gd" type="Script" id=5]
 [ext_resource path="res://scenes/Dazui_conditions/is_dead.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Dazui_actions/die.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Dazui_actions/chase.gd" type="Script" id=9]
-[ext_resource path="res://behavior_tree/BehaviorTreeNodeRandomSelector.gd" type="Script" id=10]
 [ext_resource path="res://scenes/Dazui_actions/big_jump_down.gd" type="Script" id=11]
 [ext_resource path="res://scenes/Dazui_actions/spit_prepare.gd" type="Script" id=12]
 [ext_resource path="res://scenes/Dazui_actions/big_jump_up.gd" type="Script" id=13]
@@ -312,6 +310,182 @@ graph_offset = Vector2( -149, 172.32 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
+[sub_resource type="Resource" id=24]
+script = ExtResource( 5 )
+tree_name = "Behavior Tree"
+nodes = [ {
+"custom_script": null,
+"data": {
+
+},
+"delay_on_start": false,
+"g_name": "BehaviorTreeNode",
+"max_select_delay": 0,
+"min_select_delay": 0,
+"name": "寂寞的根",
+"position": Vector2( -120, -120 ),
+"type": 3
+}, {
+"custom_script": ExtResource( 8 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode2",
+"name": "倒地",
+"position": Vector2( 160, -260 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 9 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode3",
+"name": "追踪",
+"position": Vector2( 460, -100 ),
+"type": 1
+}, {
+"custom_script": null,
+"data": {
+
+},
+"delay_on_start": true,
+"g_name": "BehaviorTreeNode4",
+"max_select_delay": 5.0,
+"min_select_delay": 3.0,
+"name": "思考一下",
+"position": Vector2( 160, -20 ),
+"type": 5
+}, {
+"custom_script": ExtResource( 13 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode5",
+"name": "上升",
+"position": Vector2( 960, -100 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 15 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode6",
+"name": "移动",
+"position": Vector2( 960, 60 ),
+"type": 1
+}, {
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode7",
+"name": "跳高",
+"position": Vector2( 460, 60 ),
+"type": 6
+}, {
+"custom_script": ExtResource( 11 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode8",
+"name": "下降",
+"position": Vector2( 960, 220 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 12 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode10",
+"name": "准备",
+"position": Vector2( 960, 400 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 14 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode11",
+"name": "吐",
+"position": Vector2( 960, 560 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 7 ),
+"data": {
+
+},
+"g_name": "BehaviorTreeNode12",
+"name": "生命值抵达了零点？",
+"position": Vector2( 520, -240 ),
+"type": 7
+}, {
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode9",
+"name": "吐槽一下",
+"position": Vector2( 460, 420 ),
+"type": 6
+} ]
+connections = [ {
+"from": "BehaviorTreeNode2",
+"from_port": 0,
+"to": "BehaviorTreeNode12",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode",
+"from_port": 0,
+"to": "BehaviorTreeNode2",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode",
+"from_port": 0,
+"to": "BehaviorTreeNode4",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode4",
+"from_port": 0,
+"to": "BehaviorTreeNode3",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode4",
+"from_port": 0,
+"to": "BehaviorTreeNode7",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode4",
+"from_port": 0,
+"to": "BehaviorTreeNode9",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode7",
+"from_port": 0,
+"to": "BehaviorTreeNode5",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode7",
+"from_port": 0,
+"to": "BehaviorTreeNode6",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode7",
+"from_port": 0,
+"to": "BehaviorTreeNode8",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode9",
+"from_port": 0,
+"to": "BehaviorTreeNode10",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode9",
+"from_port": 0,
+"to": "BehaviorTreeNode11",
+"to_port": 0
+} ]
+root = "BehaviorTreeNode"
+
 [node name="Dazui" type="KinematicBody2D"]
 position = Vector2( 410.064, 283.607 )
 script = ExtResource( 3 )
@@ -325,7 +499,7 @@ texture = ExtResource( 1 )
 position = Vector2( 4.99994, -53.3681 )
 texture = ExtResource( 2 )
 hframes = 24
-frame = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/big_jump_down = SubResource( 1 )
@@ -347,50 +521,12 @@ one_shot = true
 [node name="ChaseTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="BT" type="Node" parent="."]
+[node name="BehaviorTree" type="Node" parent="."]
 script = ExtResource( 4 )
-root_path = NodePath("root")
+behavior_tree_resource = SubResource( 24 )
+root_path = NodePath("寂寞的根")
 database = {
 "owner": NodePath("..")
 }
-
-[node name="root" type="Node" parent="BT"]
-script = ExtResource( 5 )
-
-[node name="die" type="Node" parent="BT/root"]
-script = ExtResource( 8 )
-condition_path = NodePath("cnd_is_dead")
-
-[node name="cnd_is_dead" type="Node" parent="BT/root/die"]
-script = ExtResource( 7 )
-
-[node name="think" type="Node" parent="BT/root"]
-script = ExtResource( 10 )
-max_select_delay = 2.0
-delay_on_start = true
-
-[node name="chase" type="Node" parent="BT/root/think"]
-script = ExtResource( 9 )
-
-[node name="big_jump" type="Node" parent="BT/root/think"]
-script = ExtResource( 6 )
-
-[node name="up" type="Node" parent="BT/root/think/big_jump"]
-script = ExtResource( 13 )
-
-[node name="move" type="Node" parent="BT/root/think/big_jump"]
-script = ExtResource( 15 )
-
-[node name="down" type="Node" parent="BT/root/think/big_jump"]
-script = ExtResource( 11 )
-
-[node name="spit" type="Node" parent="BT/root/think"]
-script = ExtResource( 6 )
-
-[node name="prepare" type="Node" parent="BT/root/think/spit"]
-script = ExtResource( 12 )
-
-[node name="spit_out" type="Node" parent="BT/root/think/spit"]
-script = ExtResource( 14 )
 [connection signal="timeout" from="ThinkTimer" to="." method="_on_ThinkTimer_timeout"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_ChaseTimer_timeout"]
