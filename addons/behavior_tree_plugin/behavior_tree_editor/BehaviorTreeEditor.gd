@@ -11,7 +11,9 @@ onready var graph_edit = $GraphEdit
 onready var warning_label = $WarningLabel
 onready var empty_menu = $EmptyPopupMenu
 
-const GraphNode_BehaviorTreeNode = preload("BehaviorTreeEditor_GraphNode_BehaviorTreeNode.tscn")
+#const GraphNode_BehaviorTreeNode = preload("BehaviorTreeEditor_GraphNode_BehaviorTreeNode.tscn")
+const GraphNode_Action = preload("GraphNode_Action.tscn")
+const GraphNode_Concurrent = preload("GraphNode_Concurrent.tscn")
 
 var has_ready = false
 
@@ -50,17 +52,37 @@ func set_current_behavior_tree(n):
 		graph_edit.visible = false
 		warning_label.visible = true
 
-func add_behavior_tree_node():
-	var n = GraphNode_BehaviorTreeNode.instance()
+#func add_behavior_tree_node():
+#	var n = GraphNode_BehaviorTreeNode.instance()
+#	n.editor = self
+#	n.resource = current_behavior_tree.behavior_tree_resource
+#	n.resource_data = current_behavior_tree.behavior_tree_resource.create_node(BehaviorTreeResource.NodeType.NodeUndefined)
+#	graph_edit.add_child(n)
+#	n.offset = graph_edit.get_local_mouse_position() + graph_edit.scroll_offset
+#	n.resource_data["position"] = n.offset
+#	n.resource_data["g_name"] = n.name
+#
+#	refresh_inspetor()
+
+func add_behavior_tree_node_action():
+	var n = GraphNode_Action.instance()
+	graph_edit.add_child(n)
+	slap_data_into_node(n, BehaviorTreeResource.NodeType.NodeAction)
+	refresh_inspetor()
+
+func add_behavior_tree_node_concurrent():
+	var n = GraphNode_Concurrent.instance()
+	graph_edit.add_child(n)
+	slap_data_into_node(n, BehaviorTreeResource.NodeType.NodeConcurrent)
+	refresh_inspetor()
+
+func slap_data_into_node(n, type):
 	n.editor = self
 	n.resource = current_behavior_tree.behavior_tree_resource
-	n.resource_data = current_behavior_tree.behavior_tree_resource.create_node(BehaviorTreeResource.NodeType.NodeUndefined)
-	graph_edit.add_child(n)
+	n.resource_data = current_behavior_tree.behavior_tree_resource.create_node(type)
 	n.offset = graph_edit.get_local_mouse_position() + graph_edit.scroll_offset
 	n.resource_data["position"] = n.offset
 	n.resource_data["g_name"] = n.name
-	
-	refresh_inspetor()
 
 func clear_nodes():
 	graph_edit.clear_connections()
@@ -72,13 +94,49 @@ func clear_nodes():
 func load_nodes_from_resource(res:BehaviorTreeResource):
 	# first load nodes
 	for r in res.nodes:
-		var gn = GraphNode_BehaviorTreeNode.instance()
+		var gn = null
+		match r["type"]:
+			BehaviorTreeResource.NodeType.NodeAction:
+				gn = GraphNode_Action.instance()
+			BehaviorTreeResource.NodeType.NodeConcurrent:
+				gn = GraphNode_Concurrent.instance()
+			BehaviorTreeResource.NodeType.NodePrioritySelector:
+				gn = GraphNode_Action.instance()
+			BehaviorTreeResource.NodeType.NodeProxy:
+				gn = GraphNode_Action.instance()
+			BehaviorTreeResource.NodeType.NodeRandomSelector:
+				gn = GraphNode_Action.instance()
+			BehaviorTreeResource.NodeType.NodeSequenceSelector:
+				gn = GraphNode_Action.instance()
+			BehaviorTreeResource.NodeType.NodeUndefined:
+#				gn = GraphNode_BehaviorTreeNode.instance()
+				gn = null
+		if not gn:
+			printerr("Connot load node: ", r["typee"])
+			continue
 		gn.editor = self
 		gn.resource = res
 		gn.resource_data = r
 		graph_edit.add_child(gn)
 		gn.offset = r["position"]
 		gn.name = r["g_name"]
+		
+		# load cutom data
+		match r["type"]:
+			BehaviorTreeResource.NodeType.NodeAction:
+				gn.load_action_script(r["custom_script"])
+			BehaviorTreeResource.NodeType.NodeConcurrent:
+				pass
+			BehaviorTreeResource.NodeType.NodePrioritySelector:
+				pass
+			BehaviorTreeResource.NodeType.NodeProxy:
+				pass
+			BehaviorTreeResource.NodeType.NodeRandomSelector:
+				pass
+			BehaviorTreeResource.NodeType.NodeSequenceSelector:
+				pass
+			BehaviorTreeResource.NodeType.NodeUndefined:
+				pass
 	
 	# second load connections
 	#{ from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }.
@@ -116,7 +174,7 @@ func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 
 
 func _on_GraphEdit_node_selected(node):
-	pass
+	node._on_selected()
 
 
 func _on_GraphEdit_popup_request(position):
@@ -125,7 +183,7 @@ func _on_GraphEdit_popup_request(position):
 
 
 func _on_CreateBehaviorTreeNodeButton_pressed():
-	add_behavior_tree_node()
+#	add_behavior_tree_node()
 	empty_menu.visible = false
 
 
@@ -140,3 +198,13 @@ func _on_GraphEdit__end_node_move():
 
 func _on_GraphEdit_delete_nodes_request():
 	update_connections_in_resource()
+
+
+func _on_CreateBehaviorTreeNodeActionButton_pressed():
+	add_behavior_tree_node_action()
+	empty_menu.visible = false
+
+
+func _on_CreateBehaviorTreeNodeConcurrent_pressed():
+	add_behavior_tree_node_concurrent()
+	empty_menu.visible = false

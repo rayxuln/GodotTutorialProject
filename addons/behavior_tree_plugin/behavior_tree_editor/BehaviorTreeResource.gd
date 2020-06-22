@@ -44,6 +44,22 @@ func create_node(type):
 		"custom_script": null,
 		"data": {}
 	}
+	match type:
+		NodeType.NodeUndefined:
+			pass
+		NodeType.NodeAction:
+			pass
+		NodeType.NodeConcurrent:
+			res["concurrent_mode"] = 0
+			res["condition_mode"] = 0
+		NodeType.NodePrioritySelector:
+			pass
+		NodeType.NodeProxy:
+			pass
+		NodeType.NodeRandomSelector:
+			pass
+		NodeType.NodeSequenceSelector:
+			pass
 	nodes.append(res)
 	return res
 

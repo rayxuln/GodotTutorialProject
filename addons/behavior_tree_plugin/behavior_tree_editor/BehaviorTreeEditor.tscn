@@ -38,7 +38,7 @@ __meta__ = {
 margin_left = 252.0
 margin_top = 256.0
 margin_right = 456.0
-margin_bottom = 317.0
+margin_bottom = 405.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -56,10 +56,31 @@ margin_bottom = 22.0
 text = "Create BehaviorTreeNode"
 flat = false
 
-[node name="CreateConditionNodeButton" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+[node name="CreateBehaviorTreeNodeActionButton" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
 margin_top = 26.0
 margin_right = 204.0
 margin_bottom = 48.0
+text = "Create Action Node"
+flat = false
+
+[node name="CreateBehaviorTreeNodeConcurrent" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+margin_top = 52.0
+margin_right = 204.0
+margin_bottom = 74.0
+text = "Create Cocurrent Node"
+flat = false
+
+[node name="CreateBehaviorTreeNodeButton4" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+margin_top = 78.0
+margin_right = 204.0
+margin_bottom = 100.0
+text = "Create BehaviorTreeNode"
+flat = false
+
+[node name="CreateConditionNodeButton" type="ToolButton" parent="EmptyPopupMenu/VBoxContainer"]
+margin_top = 104.0
+margin_right = 204.0
+margin_bottom = 126.0
 text = "Create ConditionNode"
 [connection signal="_end_node_move" from="GraphEdit" to="." method="_on_GraphEdit__end_node_move"]
 [connection signal="connection_request" from="GraphEdit" to="." method="_on_GraphEdit_connection_request"]
@@ -68,4 +89,6 @@ text = "Create ConditionNode"
 [connection signal="node_selected" from="GraphEdit" to="." method="_on_GraphEdit_node_selected"]
 [connection signal="popup_request" from="GraphEdit" to="." method="_on_GraphEdit_popup_request"]
 [connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeButton" to="." method="_on_CreateBehaviorTreeNodeButton_pressed"]
+[connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeActionButton" to="." method="_on_CreateBehaviorTreeNodeActionButton_pressed"]
+[connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateBehaviorTreeNodeConcurrent" to="." method="_on_CreateBehaviorTreeNodeConcurrent_pressed"]
 [connection signal="pressed" from="EmptyPopupMenu/VBoxContainer/CreateConditionNodeButton" to="." method="_on_CreateConditionNodeButton_pressed"]

@@ -3,6 +3,8 @@ extends EditorPlugin
 
 var dock
 
+var script_select_dialog
+
 func _enter_tree():
 	add_custom_type("BehaviorTree", "Node", preload("behavior_tree/BehaviorTree.gd"), preload("icon.png"))
 	
@@ -19,6 +21,9 @@ func _enter_tree():
 	dock = preload("behavior_tree_editor/BehaviorTreeEditor.tscn").instance()
 	add_control_to_bottom_panel(dock, "BehaviorTree Editor")
 	dock.the_plugin = self
+	
+	script_select_dialog = preload("behavior_tree_editor/ScriptSelectDialog.tscn").instance()
+	get_editor_interface().get_base_control().add_child(script_select_dialog)
 
 func _exit_tree():
 	remove_custom_type("BehaviorTree")
@@ -35,4 +40,7 @@ func _exit_tree():
 	
 	remove_control_from_bottom_panel(dock)
 	dock.free()
+	
+	get_editor_interface().get_base_control().remove_child(script_select_dialog)
+	script_select_dialog.free()
 	
