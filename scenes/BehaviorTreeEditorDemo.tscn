@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/behavior_tree_plugin/behavior_tree/BehaviorTree.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree_plugin/behavior_tree_editor/BehaviorTreeResource.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Dazui_actions/print.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Dazui_conditions/is_enable.gd" type="Script" id=4]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -11,49 +13,139 @@ nodes = [ {
 "data": {
 
 },
-"delay_on_start": false,
 "g_name": "BehaviorTreeNode",
-"max_select_delay": 0,
-"min_select_delay": 0,
-"name": "Unkown",
-"position": Vector2( 60, 20 ),
-"type": 3
-}, {
-"custom_script": null,
-"data": {
-
-},
-"g_name": "BehaviorTreeNode2",
-"name": "Unkown",
-"position": Vector2( 460, -20 ),
-"type": 1
-}, {
-"custom_script": null,
-"data": {
-
-},
-"g_name": "BehaviorTreeNode3",
-"name": "Unkown",
-"position": Vector2( 380, 180 ),
+"name": "根节点",
+"position": Vector2( 20, 0 ),
 "type": 6
 }, {
 "custom_script": null,
 "data": {
 
 },
+"g_name": "BehaviorTreeNode2",
+"name": "序列",
+"position": Vector2( 320, -180 ),
+"type": 6
+}, {
+"concurrent_mode": 0,
+"condition_mode": 0,
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode3",
+"name": "并行",
+"position": Vector2( 320, 340 ),
+"type": 2
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "1",
+"time": 1.0
+},
 "g_name": "BehaviorTreeNode4",
-"name": "Unkown",
-"position": Vector2( 720, 140 ),
+"name": "打印1",
+"position": Vector2( 640, -340 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "2",
+"time": 1.0
+},
+"g_name": "BehaviorTreeNode5",
+"name": "打印2",
+"position": Vector2( 640, -160 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "3",
+"time": 1.0
+},
+"g_name": "BehaviorTreeNode6",
+"name": "打印3",
+"position": Vector2( 640, 20 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "4",
+"time": 1.0
+},
+"g_name": "BehaviorTreeNode7",
+"name": "打印4",
+"position": Vector2( 660, 240 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "5",
+"time": 2.0
+},
+"g_name": "BehaviorTreeNode8",
+"name": "打印5",
+"position": Vector2( 660, 420 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "6",
+"time": 3.0
+},
+"g_name": "BehaviorTreeNode9",
+"name": "打印6",
+"position": Vector2( 660, 580 ),
+"type": 1
+}, {
+"custom_script": ExtResource( 4 ),
+"data": {
+"enable": true
+},
+"g_name": "BehaviorTreeNode10",
+"name": "cnd_e1",
+"position": Vector2( 1060, -180 ),
+"type": 7
+}, {
+"custom_script": ExtResource( 4 ),
+"data": {
+"enable": true
+},
+"g_name": "BehaviorTreeNode11",
+"name": "cnd_e2",
+"position": Vector2( 1340, 900 ),
+"type": 7
+}, {
+"custom_script": null,
+"data": {
+
+},
+"g_name": "BehaviorTreeNode12",
+"name": "序列节点的代理",
+"position": Vector2( 1040, 780 ),
+"type": 4
+}, {
+"custom_script": ExtResource( 3 ),
+"data": {
+"msg": "7",
+"time": 1.0
+},
+"g_name": "BehaviorTreeNode14",
+"name": "打印7",
+"position": Vector2( 880, 1060 ),
 "type": 1
 }, {
 "custom_script": null,
 "data": {
 
 },
-"g_name": "BehaviorTreeNode5",
-"name": "Unkown",
-"position": Vector2( 740, 320 ),
-"type": 1
+"delay_on_start": false,
+"g_name": "BehaviorTreeNode13",
+"max_select_delay": 0,
+"min_select_delay": 0,
+"name": "单一选择",
+"position": Vector2( 500, 780 ),
+"type": 3
 } ]
 connections = [ {
 "from": "BehaviorTreeNode",
@@ -66,14 +158,64 @@ connections = [ {
 "to": "BehaviorTreeNode3",
 "to_port": 0
 }, {
-"from": "BehaviorTreeNode3",
+"from": "BehaviorTreeNode2",
 "from_port": 0,
 "to": "BehaviorTreeNode4",
 "to_port": 0
 }, {
-"from": "BehaviorTreeNode3",
+"from": "BehaviorTreeNode2",
 "from_port": 0,
 "to": "BehaviorTreeNode5",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode3",
+"from_port": 0,
+"to": "BehaviorTreeNode7",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode3",
+"from_port": 0,
+"to": "BehaviorTreeNode8",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode3",
+"from_port": 0,
+"to": "BehaviorTreeNode9",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode12",
+"from_port": 1,
+"to": "BehaviorTreeNode2",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode12",
+"from_port": 0,
+"to": "BehaviorTreeNode11",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode13",
+"from_port": 0,
+"to": "BehaviorTreeNode14",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode13",
+"from_port": 0,
+"to": "BehaviorTreeNode12",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode3",
+"from_port": 0,
+"to": "BehaviorTreeNode13",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode5",
+"from_port": 0,
+"to": "BehaviorTreeNode10",
+"to_port": 0
+}, {
+"from": "BehaviorTreeNode2",
+"from_port": 0,
+"to": "BehaviorTreeNode6",
 "to_port": 0
 } ]
 root = "BehaviorTreeNode"
@@ -81,6 +223,7 @@ root = "BehaviorTreeNode"
 [node name="BehaviorTree" type="Node"]
 script = ExtResource( 1 )
 behavior_tree_resource = SubResource( 1 )
+root_path = NodePath("根节点")
 database = {
 
 }

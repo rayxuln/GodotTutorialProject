@@ -2,6 +2,8 @@ extends Node
 
 class_name BehaviorTreeCondition
 
+var bte_identity
+
 func BehaviorTreeCondition():
 	pass
 

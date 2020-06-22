@@ -6,6 +6,8 @@ enum BTNResult{
 	FINISHED
 }
 
+var bte_identity
+
 export(NodePath) var behavior_tree_path setget _on_behavior_tree_path_set, _on_behavior_tree_path_get
 func _on_behavior_tree_path_set(v):
 	behavior_tree_path = v

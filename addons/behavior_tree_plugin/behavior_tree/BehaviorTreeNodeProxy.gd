@@ -5,9 +5,13 @@ class_name BehaviorTreeNodeProxy
 export(NodePath) var behavior_tree_node_path setget _on_behavior_tree_node_path_set, _on_behavior_tree_node_path_get
 func _on_behavior_tree_node_path_set(v):
 	behavior_tree_node_path = v
+	behavior_tree_node = get_node_or_null(behavior_tree_node_path)
 func _on_behavior_tree_node_path_get():
 	return behavior_tree_node_path 
 onready var behavior_tree_node = get_node_or_null(behavior_tree_node_path)
+
+func BehaviorTreeNodeProxy():
+	pass
 
 # override
 func activate():

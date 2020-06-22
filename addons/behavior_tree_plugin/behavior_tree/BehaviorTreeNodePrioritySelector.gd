@@ -45,7 +45,7 @@ func start_delay_timer():
 func do_eval():
 	if wait_for_delay():
 		return true
-	
+
 	for child in get_children():
 		if child.has_method("BehaviorTreeNode") and child.eval():
 			if selected_child and selected_child != child:

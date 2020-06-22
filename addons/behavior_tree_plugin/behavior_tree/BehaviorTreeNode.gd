@@ -8,6 +8,8 @@ enum BTNResult{
 	FINISHED
 }
 
+var bte_identity
+
 export(NodePath) var behavior_tree_path setget _on_behavior_tree_path_set, _on_behavior_tree_path_get
 func _on_behavior_tree_path_set(v):
 	behavior_tree_path = v
@@ -31,6 +33,7 @@ func get_behavior_tree() -> Node:
 export(NodePath) var condition_path setget _on_condition_path_set, _on_condition_path_get
 func _on_condition_path_set(v):
 	condition_path = v
+	condition = get_node_or_null(condition_path)
 func _on_condition_path_get():
 	return condition_path 
 onready var condition = get_node_or_null(condition_path)

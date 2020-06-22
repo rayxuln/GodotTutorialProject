@@ -35,7 +35,6 @@ __meta__ = {
 }
 
 [node name="EmptyPopupMenu" type="PopupMenu" parent="."]
-visible = true
 margin_left = 252.0
 margin_top = 256.0
 margin_right = 456.0

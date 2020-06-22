@@ -46,12 +46,18 @@ func tick():
 		match concurrent_mode:
 			ConcurrentMode.AND:
 				if running_children[child] == BTNResult.RUNNING:
-					running_children[child] = child.tick()
+					if child.eval():
+						running_children[child] = child.tick()
+					else:
+						running_children[child] = BTNResult.FINISHED
 				else:
 					finished_cnt += 1
 			ConcurrentMode.OR:
 				if running_children[child] == BTNResult.RUNNING:
-					running_children[child] = child.tick()
+					if child.eval():
+						running_children[child] = child.tick()
+					else:
+						running_children[child] = BTNResult.FINISHED
 				else:
 					running_children.clear()
 					return BTNResult.FINISHED
@@ -59,6 +65,7 @@ func tick():
 	if finished_cnt == get_availible_child_count():
 		running_children.clear()
 		return BTNResult.FINISHED
+	
 	return BTNResult.RUNNING
 
 # override

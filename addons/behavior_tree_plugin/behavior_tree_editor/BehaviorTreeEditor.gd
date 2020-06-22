@@ -197,6 +197,12 @@ func is_node_connect_to_other(node_name, slot):
 			return true
 	return false
 
+func get_parent_through_connections(node_name):
+	for c in graph_edit.get_connection_list():
+		if c["to"] == node_name:
+			return c["from"]
+	return null
+
 # ----------------- signals -------------
 func _on_editor_selection_changed():
 	var ns:Array = editor_selection.get_selected_nodes()
@@ -219,6 +225,18 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 			return
 	
 	if from_slot != 1 or (from_slot == 1 and not is_node_connect_to_other(from, from_slot) ):
+		# to can't not be from's parent
+		var is_to_is_from_parent = false
+		var temp_from = from
+		var p = get_parent_through_connections(from)
+		while p:
+			if p == to:
+				is_to_is_from_parent = true
+				break
+			p = get_parent_through_connections(p)
+		if is_to_is_from_parent:
+			return
+			
 		graph_edit.connect_node(from, from_slot, to, to_slot)
 		update_connections_in_resource()
 

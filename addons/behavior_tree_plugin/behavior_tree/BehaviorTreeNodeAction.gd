@@ -25,14 +25,6 @@ func exit():
 func execute():
 	return BTNResult.RUNNING
 
-# override
-func get_data():
-	return {}
-
-# orverride
-func set_data(d):
-	pass
-
 func tick():
 	var res = BTNResult.FINISHED
 	if state == BTAState.READY:

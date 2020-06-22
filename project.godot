@@ -96,6 +96,10 @@ config/name="GodotTurtorialProject"
 run/main_scene="res://scenes/BehaviorTreeEditorDemo.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "behavior_tree_plugin" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
